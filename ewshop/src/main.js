@@ -5,8 +5,10 @@ import store from './store'
 import 'vant/lib/index.css';
 
 
-import { Swipe, SwipeItem } from 'vant';
+import { Swipe, SwipeItem,Lazyload,Badge  } from 'vant';
 
 createApp(App)
-    .use(Swipe).use(SwipeItem)
+    .use(Swipe).use(SwipeItem).use(Lazyload,{
+        loading:require('./assets/images/animation.gif'),
+}).use(Badge)
     .use(store).use(router).mount('#app')

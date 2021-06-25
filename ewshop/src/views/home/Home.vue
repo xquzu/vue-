@@ -70,8 +70,6 @@ export default {
         console.log(res.goods);
         //3.获取轮播图的数据
         banners.value = res.slides;
-        console.log(res.slides);
-
       })
       //畅销的
       getHomeGoods('sales').then(res => {
@@ -170,6 +168,7 @@ export default {
 </script>
 
 <style>
+
 .banners img {
   width: 100%;
   height: auto;
