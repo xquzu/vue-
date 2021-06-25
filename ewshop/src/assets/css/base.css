@@ -1,0 +1,40 @@
+/*
+引入css样式
+*/
+@import "./normalize.css";
+/*
+自定义全局样式
+:root 代表根
+*/
+:root{
+    --color-text:#666;
+    --color-high-text:#42bBaa;
+    --color-tint:#42b983;
+    --color-background:#ffffff;
+    --font-size:14px;
+    --line-height:1.5;
+}
+
+*,
+*::before,*::after{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+body{
+    user-select:none;/*禁止用户选择中文件或图片*/
+    background: var(--color-background);/*调用声明的高量颜色用var*/
+    color:var(--color-text);
+    width:100vw;
+}
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}
+
+a{
+    color:var(--color-text);
+    text-decoration: none;
+}
