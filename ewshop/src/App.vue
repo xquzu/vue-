@@ -2,29 +2,32 @@
 
   <router-view v-slot="{ Component }">
     <transition>
-      <keep-alive>
+<!--      缓存-->
+<!--      <keep-alive>-->
         <component :is="Component" />
-      </keep-alive>
+<!--      </keep-alive>-->
     </transition>
   </router-view>
 
   <div id="nav">
     <router-link to="/" class="tab-bar-items">
-      <div class="icon"><i class="iconfont icon-shouye"></i></div>
+      <div class="icon"><i class="iconfont icon-dianpu"></i></div>
       <div>首页</div>
     </router-link>
     <router-link to="/category" class="tab-bar-items">
-      <div class="icon"><i class="iconfont icon-fenlei"></i></div>
+      <div class="icon"><i class="iconfont icon-fenlei1"></i></div>
       <div>分类</div>
     </router-link>
     <router-link to="/shopcart" class="tab-bar-items">
       <van-badge :content="5" max="9">
-        <div class="icon"><i class="iconfont icon-gouwuche"></i></div>
+        <div class="icon"><i class="iconfont icon-shop"></i></div>
       </van-badge>
       <div>购物车</div>
+
+
     </router-link>
     <router-link to="/profile" class="tab-bar-items">
-      <div class="icon"><i class="iconfont icon-yonghu"></i></div>
+      <div class="icon"><i class="iconfont icon-gerenzhongxin"></i></div>
       <div>我的</div>
     </router-link>
   </div>
@@ -72,5 +75,9 @@
     vertical-align: middle;
     display: inline-block;
   }
+}
+
+.iconfont{
+  font-size: 23px;
 }
 </style>

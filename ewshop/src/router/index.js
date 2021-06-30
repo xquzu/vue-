@@ -1,12 +1,15 @@
 import {createRouter, createWebHistory} from 'vue-router'
 
+import {Dialog} from 'vant'
 //设置懒加载路由
 const Home = () => import('../views/home/Home')
 const Category = () => import('../views/category/Category')
 const Detail = () => import('../views/detail/Detail')
 const Profile = () => import('../views/profile/Profile')
 const ShopCart = () => import('../views/shopcart/ShopCart')
-
+const Register = () => import('../views/profile/Register')
+const Login = () => import('../views/profile/Login')
+import store from '../store'
 const routes = [
     {
         path: '',
@@ -50,7 +53,8 @@ const routes = [
       component: Profile,
         //原元素
         meta:{
-            title:"小迷糊-个人中心"
+            title:"小迷糊-个人中心",
+            isAuthRequired:true
         }
     },
     {
@@ -59,9 +63,29 @@ const routes = [
       component: ShopCart,
         //原元素
         meta:{
-            title:"小迷糊-购物车"
+            title:"小迷糊-购物车",
+            isAuthRequired:true
         }
     },
+    {
+        path: '/register',
+        name: 'Register',
+        component: Register,
+        //原元素
+        meta:{
+            title:"用户注册"
+        }
+    },
+    {
+        path: '/login',
+        name: 'Login',
+        component: Login,
+        //原元素
+        meta:{
+            title:"用户登录"
+        }
+    },
+
 
 ]
 
@@ -70,10 +94,22 @@ const router = createRouter({
     routes
 })
 
-//导航守卫
+//前置导航守卫
 router.beforeEach( (to,from,next) => {
 //如果没有登录，在这里直接到login
-    next();
+    if(to.meta.isAuthRequired && store.state.user.islogin === false){
+
+        Dialog.alert({
+            message: '你还没有登录，亲先登录！！',
+            theme: 'round-button',
+            confirmButtonColor: 'rgb(190,175,238)',
+
+        })
+        return next('/login')
+    }else{
+        next();
+    }
+
 
     document.title = to.meta.title;
 })

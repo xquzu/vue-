@@ -8,10 +8,10 @@
 
     <div class="wrapper">
       <div class="content">
-<!--        7.-->
+        <!--        7.-->
         <div ref="banref">
           <!--1.把数据取出来传递过去-->
-         <home-swiper :banners="banners"></home-swiper>
+          <home-swiper :banners="banners"></home-swiper>
 
           <recommend-view :recommends="recommends"></recommend-view>
 
@@ -36,7 +36,7 @@ import BackTop from "components/common/backtop/BackTop";//置顶
 //网络请求方法
 import {getHomeAllData, getHomeGoods} from "network/home";
 //vue方法
-import {ref, onMounted, reactive, computed,watchEffect,nextTick} from 'vue';
+import {ref, onMounted, reactive, computed, watchEffect, nextTick} from 'vue';
 //滚动组件
 import BetterScroll from 'better-scroll';
 
@@ -44,8 +44,8 @@ export default {
   name: "Home",
   setup() {
     //6.
-    let isTabFixed =ref(false);
-    let isShowBackTop =ref(false);
+    let isTabFixed = ref(false);
+    let isShowBackTop = ref(false);
     let banref = ref(null)
     const recommends = ref([]);
 //商品列表数据模型
@@ -67,7 +67,6 @@ export default {
     onMounted(() => {
       getHomeAllData().then(res => {
         recommends.value = res.goods
-        console.log(res.goods);
         //3.获取轮播图的数据
         banners.value = res.slides;
       })
@@ -85,25 +84,23 @@ export default {
       })
 
       //创建BetterScroll对象
-       bscroll = new  BetterScroll(document.querySelector('.wrapper'),{
-        probeType:3,//0,1,2,3,3  只要在运动就触发scroll事件
-        click:true,//是否允许点击
-        pullUpLoad:true//上拉加载更多。默认是false
+      bscroll = new BetterScroll(document.querySelector('.wrapper'), {
+        probeType: 3,//0,1,2,3,3  只要在运动就触发scroll事件
+        click: true,//是否允许点击
+        pullUpLoad: true//上拉加载更多。默认是false
       });
 
       //触发滚动事件
-      bscroll.on('scroll',(position) =>  {
+      bscroll.on('scroll', (position) => {
         //8.如果滚动的高度大于中间一块的高度就为ture
         isShowBackTop.value = isTabFixed.value = (-position.y) > banref.value.offsetHeight
       })
 
       //上拉加载数据，触发pullingUp
-      bscroll.on("pullingUp",() =>{
-        console.log('上拉加载更多');
-
+      bscroll.on("pullingUp", () => {
         //1.加载下一页
         const page = goods[currentType.value].page + 1;
-        getHomeGoods(currentType.value,page).then(res=>{
+        getHomeGoods(currentType.value, page).then(res => {
           goods[currentType.value].list.push(...res.goods)
           goods[currentType.value].page += 1
         })
@@ -123,7 +120,7 @@ export default {
       currentType.value = types[index];
       //4.
       //dom 渲染完成才执行的一个方法
-      nextTick(()=>{
+      nextTick(() => {
         //重新计算高度
         bscroll && bscroll.refresh();
       })
@@ -132,16 +129,16 @@ export default {
     //监听  任何一个变量的变化
     watchEffect(() => {
       //dom 渲染完成才执行的一个方法
-      nextTick(()=>{
+      nextTick(() => {
         //重新计算高度
-       bscroll && bscroll.refresh();
+        bscroll && bscroll.refresh();
       })
     })
 
     //置顶  事件
-    const bTop =  () => {
+    const bTop = () => {
       //回到顶部方法
-      bscroll.scrollTo(0,0,500);
+      bscroll.scrollTo(0, 0, 500);
     }
     return {
       recommends,
@@ -181,14 +178,28 @@ export default {
 
 .wrapper {
   position: absolute;
-  top:45px;
-  bottom:50px;
-  left:0px;
-  right:0px;
+  top: 45px;
+  bottom: 50px;
+  left: 0px;
+  right: 0px;
   overflow: hidden;
 }
-.content{
 
+.goods[data-v-800e70f6]{
+  background: #f1f1f1;
+}
+.goods-item[data-v-6fbca6b8]{
+  width: 46%;
+  background: #ffffff;
+  border-radius: 10px;
+  margin-top: 19px;
+  box-shadow: 5px 5px   #f1f1f1;
+}
+.goods-info[data-v-6fbca6b8]{
+  height:49px;
+}
+.goods-item[data-v-6fbca6b8]>img{
+  border-radius: 10px 10px 0px 0px;
 }
 
 </style>

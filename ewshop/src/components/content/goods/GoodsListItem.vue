@@ -1,22 +1,32 @@
 <template>
-  <div class="goods-item">
+  <div class="goods-item" @click="itemClick">
     <img v-lazy="product.cover_url" alt="">
     <div class="goods-info">
-      <p>{{ product.title }}</p>
+      <p class="title">{{ product.title }}</p>
       <span class="price"><small>￥</small>{{ product.price }}.80</span>
-      <span class="collect">0</span>
+      <span class="stock">{{product.sales}}人付款</span>
+
     </div>
   </div>
 </template>
 
 <script>
-
+import {useRouter} from  "vue-router";
 export default {
   name: "GoodsListItem",
   props: {
     product: Object,
     default() {
       return {}
+    }
+  },
+  setup(props) {
+    const router = useRouter();
+
+    return {
+      itemClick () {
+        router.push({path:'./detail',query:{id:props.product.id}})
+      }
     }
   }
 
@@ -26,6 +36,7 @@ export default {
 <style scoped lang="scss">
 .goods-item {
   width: 45%;
+  height:250px;
   padding-bottom: 40px;
   position: relative;
 
@@ -36,14 +47,23 @@ export default {
   }
 
   .goods-info {
-    font-size: 12px;
     position: absolute;
     bottom: 5px;
     left: 0;
     right: 0;
     overflow: hidden;
-    text-align: center;
-
+    text-align: left;
+    padding: 0px 10px;
+    margin-top: 10px;
+    height: 55px;
+    .title{
+      font-size: 16px;
+      font-weight: bold;
+    }
+    .stock{
+      font-size: 12px;
+      color: #cccccc;
+    }
     p {
       overflow: hidden;
       text-overflow: ellipsis;
@@ -53,7 +73,8 @@ export default {
 
     .price {
       color: red;
-      margin-right: 20px;
+      margin-right: 5px;
+      font-size: 15px;
     }
 
     .collect {

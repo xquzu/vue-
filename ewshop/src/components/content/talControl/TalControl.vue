@@ -49,6 +49,7 @@ name: "TalControl",
   position:sticky;
   top:44px;
   z-index: 10;
+  box-shadow: #f1f1 5px 5px 5px ;
   .tal-control-item{
       flex:1;
     span{
