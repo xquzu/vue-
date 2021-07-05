@@ -3,7 +3,7 @@
     <img v-lazy="product.cover_url" alt="">
     <div class="goods-info">
       <p class="title">{{ product.title }}</p>
-      <span class="price"><small>￥</small>{{ product.price }}.80</span>
+      <span class="price"><small>￥</small>{{ product.price }}</span>
       <span class="stock">{{product.sales}}人付款</span>
 
     </div>

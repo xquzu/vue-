@@ -73,7 +73,6 @@ export default {
         //1将token保存到本地  window.localStorage  setItem(key,value)  getItem(key)
           window.localStorage.setItem('token',res.access_token)
         //在vuex   islogin
-        console.log(store)
             store.commit('setIsLogin',true);
         //在vuex  临时isLogin
         Toast.success('登录成功');
@@ -88,7 +87,6 @@ export default {
 
     return {
       ...toRefs(userinfo),
-      userinfo,
       onSubmit,
     }
   },

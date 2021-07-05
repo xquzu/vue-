@@ -26,3 +26,9 @@ export function logout(data){
         data
     })
 }
+//获取用户信息
+export function getUser(){
+    return request({
+        url:'/api/user',
+    })
+}

@@ -1,7 +1,6 @@
 import axios from "axios";
 import { Dialog ,Toast} from 'vant';
 import router from '../router'
-
 export function request(config){
 const instance = axios.create({
     baseURL:'http://www.wcban.com',

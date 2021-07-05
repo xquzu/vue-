@@ -1,5 +1,5 @@
 import {createRouter, createWebHistory} from 'vue-router'
-
+// import {useStore} from "vuex";
 import {Dialog} from 'vant'
 //设置懒加载路由
 const Home = () => import('../views/home/Home')
@@ -10,6 +10,8 @@ const ShopCart = () => import('../views/shopcart/ShopCart')
 const Register = () => import('../views/profile/Register')
 const Login = () => import('../views/profile/Login')
 import store from '../store'
+import Address from "@/views/profile/Address";
+import AddressEdit from "@/views/profile/AddressEdit";
 const routes = [
     {
         path: '',
@@ -64,6 +66,28 @@ const routes = [
         //原元素
         meta:{
             title:"小迷糊-购物车",
+            isAuthRequired:true
+        }
+    },
+    //地址管理
+    {
+        path: '/address',
+        name: 'Address',
+        component: Address,
+        //原元素
+        meta:{
+            title:"地址管理",
+            isAuthRequired:true
+        }
+    },
+    //地址编辑
+    {
+        path: '/addressedit',
+        name: 'Addressedit',
+        component: AddressEdit,
+        //原元素
+        meta:{
+            title:"地址编辑",
             isAuthRequired:true
         }
     },

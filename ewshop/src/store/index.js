@@ -6,7 +6,8 @@ import actions from './actions';
 const  state = {
   user:{
     islogin:window.localStorage.getItem('token') ? true : false
-  }
+  },
+  cartCount:0
 }
 
 export default createStore({

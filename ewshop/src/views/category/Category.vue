@@ -147,7 +147,7 @@ export default {
       currentOrder.value = orders[index];
       //7.当用户点击选项卡时也要重新获取一下数据
       getcategoryGoods(currentOrder.value, currentcid.value).then(res => {
-        console.log(res.goods.data);
+        // console.log(res.goods.data);
         goods[currentOrder.value].list = res.goods.data
         //6.点击选项卡时也要刷新一下
         nextTick(() => {
@@ -157,8 +157,8 @@ export default {
       })
 
 
-      console.log(currentcid.value);
-      console.log(currentOrder.value);
+      // console.log(currentcid.value);
+      // console.log(currentOrder.value);
     }
 
     //通过分类获取商品
@@ -166,8 +166,8 @@ export default {
       currentcid.value = cid;
       //6.通过分类获取商品调用一下获取数据
       init()
-      console.log(currentcid.value);
-      console.log(currentOrder.value);
+      // console.log(currentcid.value);
+      // console.log(currentOrder.value);
     }
 
     //5.监听  任何一个变量的变化
